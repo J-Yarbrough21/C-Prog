@@ -35,25 +35,30 @@ int main(void)
 
     // call your function with args here and store to a variable called dist.
     distance = distance_func(x1, y1, x2, y2);
-
     printf(" The distance between the points is: %lf ", distance);
 
     return 0;
 }
 
-// Describe what the function does
-// Describes the inputs and their order, and tells their data types
-// Describes the return value and its data type
-// Describes how the function does what it does
+/*  This function calculates the distance between two points
+    then returns the answer of the calcution */
+/*  The inputs are (x1,y1) and (x2,y2),
+    doubles used as there can be negative numbers located at the points. */
+/*  The return of the function allows for the answer of the calculation to be
+    used elsewhere in the script, doubles are used to ensure proper formatting
+    with the rest of the script. */
+/*  By using the values inputted by the user (x1, y2, x2, y2) in the distance
+    formula the function can calculate then calculate the distance between
+    two points.*/
 double distance_func(double x1, double y1, double x2, double y2)
 {
     double distance;
-    // printf("%lf %lf %lf %lf", x1, y1, x2, y2);
-    // double difx = x2 - x1;
-    // printf("%lf", difx);
+    // printf("%lf %lf %lf %lf", x1, y1, x2, y2); testing statement
+    // double difx = x2 - x1; testing statement
+    // printf("%lf", difx); testing statement
     distance = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
-    // printf("test2 %lf", distance);
-    //  scanf("%lf", distance);
+    // printf("test2 %lf", distance); testing statement
+    //   scanf("%lf", distance); not needed, does not save to memory, calls in the value again
     return distance;
 }
 
