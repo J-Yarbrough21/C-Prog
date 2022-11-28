@@ -14,11 +14,14 @@ int main()
 	printf("Please Enter an Integer between (2-100):\n");
 	scanf("%d", &S);
 
-	while (S < 2 || S > 100) // verifying integer entered
+	while (S < 2 || 100 < S) // verifying integer entered
 	{
 		printf("\nInvalid value.\nEnter Number of Sides between (2-100):\n");
 		scanf("%d", &S);
-		S++;
+		if (2 <= S && S <= 100)
+		{
+			break;
+		}
 	}
 
 	long int sum = 0;
