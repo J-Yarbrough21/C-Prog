@@ -1,60 +1,71 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
+#include <time.h>
 
-// loop from 0-51 to fill the deck with 52 cards
-for (int i = 0; i < 52; i++)
-{
-}
-// Non ending while loop, will break when a non repeated card is found
-while (1)
-{
-   int pos = rand() % 52; // random number between 0 to 51 inclusive
-}
+int shuffle_deck(char deck[5][2]);
 
-if (taken[pos] == false)
-{                     // if card in NOT taken
-   deck[i] = pos;     // put the card in deck
-   taken[pos] = true; // it repeated that the card 'pos' is added to deck
-   break;             // card found, so break from while loop
-}
+char ranks[13] = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
+char suits[4] = {'C', 'D', 'H', 'S'};
 
-int main()
+int main(void)
 {
 
-   char rank[] = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
-   char suit[] = {'C', 'D', 'H', 'S'};
+   srand(time(0));
+   char deck[5][2] = {};
 
-   int deck[52]; // array for deck
+   shuffle_deck(deck);
 
-   // calling shuffle Function to shuffle th deck
-   shuffle(deck);
+   int i = 0;
+   int start = 0;
+   int end = 4;
+   for (int h = 0; h <= 4; h++)
+   {
 
-   // id repesents the index of deck currently
-   int id = 0;
-   for (int i = 1; i <= 10; i++)
-   { // loop for 10 hands
-      for (int j = 1; j <= 5; j++)
-      { // loop for 5 cards
-
-         int s = deck[id] / 13; // calculating suit number from card number
-         int r = deck[id] % 13; // calculating rank number from card number
-
-         printf("%c%c ", rank[r], suit[s]); // displaying data
-         id++;                              // incrementing the index of deck
+      for (int i = start; i <= end; i++)
+      {
+         printf("%c", deck[i][0]);
+         printf("%c\t", deck[i][1]);
       }
-      printf("\n");
+      printf("\r\n");
+      start = start + 5;
+      end = end + 5;
    }
-
    return 0;
 }
 
-// Function to shuffle the deck
-void shuffle(int deck[])
+int shuffle_deck(char deck[5][2])
 {
-   // taken repesents that wether the card pushed in deck or not
-   bool taken[52] = {false};
+   for (int i = 0; i <= 4; i++)
+   {
+      int num1 = (rand() % (12 + 1));
+      int num2 = (rand() % (4));
+
+      deck[i][0] = ranks[num1];
+      deck[i][1] = suits[num2];
+   }
+
+   for (int i = 0; i <= 4; i++)
+   {
+      int count = 0;
+      for (int j = 0; j <= 4; j++)
+      {
+         if (deck[i][0] == deck[j][0] && deck[i][1] == deck[j][1])
+         {
+            count++;
+         }
+      }
+      if (count > 1)
+      {
+         int num1 = (rand() % (12 + 1));
+         deck[i][0] = ranks[num1];
+         int num2 = (rand() % (4));
+         deck[i][1] = suits[num2];
+      }
+   }
+   return 0;
 }
+
+/*eof*/
 
 /*
 
